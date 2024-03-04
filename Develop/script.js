@@ -3,6 +3,58 @@ const numericCharacters = "0123456789".split("");
 const lowerCasedCharacters = "abcdefghijklmnopqrstuvwxyz".split("");
 const upperCasedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
+// Function to prompt user for password options using template literals and arrow function
+const getPasswordOptions = () => {
+  const length = parseInt(
+    prompt("How many characters would you like your password to contain?"),
+    10
+  );
+
+  if (Number.isNaN(length)) {
+    alert("Password length must be provided as a number");
+    return null;
+  }
+  if (length < 8) {
+    alert("Password length must be at least 8 characters");
+    return null;
+  }
+  if (length > 128) {
+    alert("Password length must less than 129 characters");
+    return null;
+  }
+
+  const hasSpecialCharacters = confirm(
+    "Click OK to confirm including special characters."
+  );
+  const hasNumericCharacters = confirm(
+    "Click OK to confirm including numeric characters."
+  );
+  const hasLowerCasedCharacters = confirm(
+    "Click OK to confirm including lowercase characters."
+  );
+  const hasUpperCasedCharacters = confirm(
+    "Click OK to confirm including uppercase characters."
+  );
+
+  if (
+    !hasSpecialCharacters &&
+    !hasNumericCharacters &&
+    !hasLowerCasedCharacters &&
+    !hasUpperCasedCharacters
+  ) {
+    alert("Must select at least one character type");
+    return null;
+  }
+
+  return {
+    length,
+    hasSpecialCharacters,
+    hasNumericCharacters,
+    hasLowerCasedCharacters,
+    hasUpperCasedCharacters,
+  };
+};
+
 
 // Get references to the #generate element and add event listener using const
 const generateBtn = document.querySelector("#generate");
