@@ -56,6 +56,43 @@ const getPasswordOptions = () => {
 };
 
 
+const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+// Function to generate password with user input
+const generatePassword = () => {
+  const options = getPasswordOptions();
+  if (!options) return null;
+
+  let result = [];
+  let possibleCharacters = [];
+  let guaranteedCharacters = [];
+
+  // Using destructuring to improve readability
+  const {
+    hasSpecialCharacters,
+    hasNumericCharacters,
+    hasLowerCasedCharacters,
+    hasUpperCasedCharacters,
+  } = options;
+
+  if (hasSpecialCharacters) {
+    possibleCharacters = [...possibleCharacters, ...specialCharacters];
+    guaranteedCharacters.push(getRandom(specialCharacters));
+  }
+  if (hasNumericCharacters) {
+    possibleCharacters = [...possibleCharacters, ...numericCharacters];
+    guaranteedCharacters.push(getRandom(numericCharacters));
+  }
+  if (hasLowerCasedCharacters) {
+    possibleCharacters = [...possibleCharacters, ...lowerCasedCharacters];
+    guaranteedCharacters.push(getRandom(lowerCasedCharacters));
+  }
+  if (hasUpperCasedCharacters) {
+    possibleCharacters = [...possibleCharacters, ...upperCasedCharacters];
+    guaranteedCharacters.push(getRandom(upperCasedCharacters));
+  }
+
+
 // Get references to the #generate element and add event listener using const
 const generateBtn = document.querySelector("#generate");
 
