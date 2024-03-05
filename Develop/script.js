@@ -92,6 +92,15 @@ const generatePassword = () => {
     guaranteedCharacters.push(getRandom(upperCasedCharacters));
   }
 
+  for (let i = 0; i < options.length; i++) {
+    result.push(getRandom(possibleCharacters));
+  }
+
+  // Mix in at least one of each guaranteed character in the result
+  guaranteedCharacters.forEach((char, index) => (result[index] = char));
+
+  return result.join("");
+};
 
 // Get references to the #generate element and add event listener using const
 const generateBtn = document.querySelector("#generate");
