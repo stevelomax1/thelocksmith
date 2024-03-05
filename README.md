@@ -8,6 +8,7 @@ HTML and CSS are used as the started code foundation however Javascript is what 
 
 The password generator will be a helpful tool for those looking to added security.
 
+https://github.com/stevelomax1/thelocksmith.git
 
 
 
